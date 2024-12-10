@@ -1,0 +1,94 @@
+networks:
+  laravel:
+
+services:
+  app:
+    container_name: nginx
+    build:
+      context: ./dockerfiles
+      dockerfile: nginx.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html:cached
+    depends_on:
+      - php
+      - redis
+      - mysql
+    networks:
+      - laravel
+
+  mysql:
+    container_name: mysql_maria_db
+    image: mariadb:10.9
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - laravel
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  php:
+    container_name: php
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./public:/var/www/html/public:cached
+      - ./src:/var/www/html/src:cached
+    env_file:
+      - .env
+    networks:
+      - laravel
+
+  redis:
+    container_name: redis
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?err}
+    volumes:
+      - redis_data:/data
+    networks:
+      - laravel
+
+  npm:
+    container_name: npm
+    image: node:current-alpine
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "5173:5173"
+    working_dir: /var/www/html
+    entrypoint: ['npm']
+    networks:
+      - laravel
+
+volumes:
+  mysql_data:
+  redis_data:
