@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\AdventOfCodeList;
 use Illuminate\Support\ServiceProvider;
+use App\Services\DataDay2;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
                 // Predefined default data (if needed)
             ]);
         });
+        $this->app->singleton(DataDay2::class, function ($app) {
+            // You can optionally pass default data
+            return new DataDay2([
+                // Predefined default data (if needed)
+            ]);
+        });
+
+
     }
 
     /**

@@ -1,47 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\AdventOfCodeList;
+
+use App\Services\DataDay2;
 
 use Illuminate\Http\Request;
 
 class Day2Controller extends Controller
 {
-    public function __construct(AdventOfCodeList $adventList)
+    public function __construct(DataDay2 $dataDay2)
     {
-        $this->adventList = $adventList;
+        $this->dataDay2 = $dataDay2;
     }
 
     public function solve()
     {
-        $data = $this->adventList->getAllData();
+        $data = $this->dataDay2->getAllData();
 
-        // First column
-        $table1 =  $this->adventList->getColumn(0);
-        // Second column
-        $table2 =  $this->adventList->getColumn(1);
+        // Example input data
+        /*$data = [
+            [7, 6, 4, 2, 1],
+            [1, 2, 7, 8, 9],
+            [9, 7, 6, 2, 1],
+            [1, 3, 2, 4, 5],
+            [8, 6, 4, 4, 1],
+            [1, 3, 6, 7, 9]
+        ];
+        */
 
-        $similarityScore = $this->findSimilarityScore($table1, $table2);
-
-        error_log(" similarityScore result: " . $similarityScore . PHP_EOL);
-
-        return view('day2.day2', compact('table1', 'table2','similarityScore',));
-    }
-
-    public function findSimilarityScore($table1, $table2){
-
-        $sumSimilarityScore = 0;
-        foreach ($table1 as $key => $table1Value){
-            $count = $this->adventList->countByValue(1, $table1Value);
-            $sumSimilarityScore += $count * $table1Value;
-/*
-            error_log(" table1Value value: " . $table1Value . PHP_EOL);
-            error_log(" count value: " . $count . PHP_EOL);
-            error_log(" similarityScore value: " . $sumSimilarityScore . PHP_EOL);
-                dd();
-       */
+        // Count the number of safe reports
+        $safeReportsCount = 0;
+        foreach ($data as $report) {
+            if ($this->isSafeReport($report)) {
+                $safeReportsCount++;
+            }
         }
-        return $sumSimilarityScore;
+        // Output the result
+        error_log("Number of safe reports: $safeReportsCount\n");
+
+        return view('day2.day2', compact('data', 'safeReportsCount'));
     }
 
+    // Function to check if a report is safe
+    function isSafeReport(array $levels): bool
+    {
+        $isIncreasing = true;
+        $isDecreasing = true;
+
+        for ($i = 1; $i < count($levels); $i++) {
+            $difference = $levels[$i] - $levels[$i - 1];
+
+            // Check if difference is outside the range [1, 3]
+            if (abs($difference) < 1 || abs($difference) > 3) {
+                return false;
+            }
+
+            // Determine if the sequence is not strictly increasing
+            if ($difference < 0) {
+                $isIncreasing = false;
+            }
+
+            // Determine if the sequence is not strictly decreasing
+            if ($difference > 0) {
+                $isDecreasing = false;
+            }
+        }
+
+        // A safe report must be either strictly increasing or strictly decreasing
+        return $isIncreasing || $isDecreasing;
+    }
 }

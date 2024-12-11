@@ -18,8 +18,11 @@
     </style>
 </head>
 <body>
-<h2 style="text-align: center;">Scroll at end for solution</h2>
-
+<h2 style="text-align: center;">Day 1 part one total distance of: {{$sumDiff}}</h2>
+<h2 style="text-align: center;">Day 1 part two similarity score: {{$similarityScore}}</h2>
+<div style="text-align: center;" >
+    <a href="https://adventofcode.com/2024/day/1">Link Day 2 assignment</a>
+</div>
 <h1 style="text-align: center;">Numbers Table 1</h1>
 <table>
     <tbody>
@@ -40,8 +43,6 @@
     @endforeach
     </tbody>
 </table>
-
-<h1 style="text-align: center;">Solution day 1 is total distance of: {{$sumDiff}}</h1>
 
 </body>
 </html>

@@ -18,25 +18,21 @@
     </style>
 </head>
 <body>
-<h2 style="text-align: center;">Solution day 2 is: {{$similarityScore}}</h2>
+<h2 style="text-align: center;">Solution day 2 is safe reports: {{$safeReportsCount}}</h2>
+<div style="text-align: center;" >
+    <a href="https://adventofcode.com/2024/day/2">Link Day 2 assignment</a>
+</div>
+<h2 style="text-align: center;">Data</h2>
+<table>
+    <tbody>
+    @foreach ($data as $line)
+        <tr>
 
-<h2 style="text-align: center;">Numbers Table 1</h2>
-<table>
-    <tbody>
-    @foreach ($table1 as $row)
-        <tr>
-                <td>{{ $row }}</td>
+        @foreach($line as $value)
+                <td>{{ $value }}</td>
+        @endforeach
         </tr>
-    @endforeach
-    </tbody>
-</table>
-<h2 style="text-align: center;">Numbers Table 2</h2>
-<table>
-    <tbody>
-    @foreach ($table2 as $row)
-        <tr>
-            <td>{{ $row }}</td>
-        </tr>
+
     @endforeach
     </tbody>
 </table>

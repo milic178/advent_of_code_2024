@@ -14,16 +14,18 @@ class Day1Controller extends Controller
 
     public function solve()
     {
-        $data = $this->adventList->getAllData();
         // First column
-        $table1 = array_column($data, 0);
+        $table1 =  $this->adventList->getColumn(0);
         // Second column
-        $table2 = array_column($data, 1);
+        $table2 =  $this->adventList->getColumn(1);
 
         $sumDiff = $this->findSumDifference($table1, $table2);
         error_log(" Sum difference result: " . $sumDiff . PHP_EOL);
 
-        return view('day1.day1', compact('table1', 'table2','sumDiff',));
+        $similarityScore = $this->findSimilarityScore($table1);
+        error_log(" similarityScore result: " . $similarityScore . PHP_EOL);
+
+        return view('day1.day1', compact('table1', 'table2', 'sumDiff', 'similarityScore'));
     }
 
     public function findSumDifference($table1, $table2)
@@ -37,6 +39,17 @@ class Day1Controller extends Controller
         }
         error_log('Sum = ' . $sum);
         return $sum;
+    }
+
+
+    public function findSimilarityScore($table1){
+
+        $sumSimilarityScore = 0;
+        foreach ($table1 as $table1Value){
+            $count = $this->adventList->countByValue(1, $table1Value);
+            $sumSimilarityScore += $count * $table1Value;
+        }
+        return $sumSimilarityScore;
     }
 
 }
