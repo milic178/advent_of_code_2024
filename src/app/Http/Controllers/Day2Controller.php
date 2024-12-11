@@ -19,31 +19,55 @@ class Day2Controller extends Controller
 
         // Example input data
         /*$data = [
-            [7, 6, 4, 2, 1],
-            [1, 2, 7, 8, 9],
-            [9, 7, 6, 2, 1],
-            [1, 3, 2, 4, 5],
-            [8, 6, 4, 4, 1],
-            [1, 3, 6, 7, 9]
+            [7, 6, 4, 2, 1],    //safe part 2
+            [1, 2, 7, 8, 9],    //unsafe part 2
+            [9, 7, 6, 2, 1],    //unsafe part 2
+            [1, 3, 2, 4, 5],    //safe part 2
+            [8, 6, 4, 4, 1],    //safe part 2
+            [1, 3, 6, 7, 9]     //safe part 2
         ];
         */
 
         // Count the number of safe reports
         $safeReportsCount = 0;
+        $problemDampenerRule = 0;
         foreach ($data as $report) {
             if ($this->isSafeReport($report)) {
                 $safeReportsCount++;
+            } else {
+                //part two
+                foreach ($report as $index => $reportItem) {
+                    //copy report
+                    $modifiedReport = $report;
+                    //remove first item
+                    unset($modifiedReport[$index]);
+                    //reindex array
+                    $modifiedReport = array_values($modifiedReport);
+                    //check if safe, if so then its ok dont check anymore (only 1 item can be removed)
+                    if($this->isSafeReport($modifiedReport)) {
+                        $problemDampenerRule++;
+                        break;
+                    }
+                }
             }
         }
-        // Output the result
-        error_log("Number of safe reports: $safeReportsCount\n");
+        $totalSafeReports = $safeReportsCount + $problemDampenerRule;
 
-        return view('day2.day2', compact('data', 'safeReportsCount'));
+        // Output the result
+        error_log("Number of originally safe reports: $safeReportsCount\n");
+        error_log("Number of problem dampener rule: $problemDampenerRule\n");
+        error_log("Number of total safe reports: $totalSafeReports\n");
+
+        return view('day2.day2', compact('data', 'safeReportsCount', 'problemDampenerRule', 'totalSafeReports'));
     }
 
     // Function to check if a report is safe
     function isSafeReport(array $levels): bool
     {
+        // Not enough levels to determine safety
+        if (count($levels) < 2) {
+            return false;
+        }
         $isIncreasing = true;
         $isDecreasing = true;
 
