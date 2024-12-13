@@ -20,6 +20,7 @@
 <body>
 <h2 style="text-align: center;">Solution day 3 part one, matches found: {{$countMatches}}</h2>
 <h2 style="text-align: center;">Solution day 3 part one, matches sum: {{$sumMatches}}</h2>
+<h2 style="text-align: center;">Solution day 3 part two, matches sum: {{$sumMatches2}}</h2>
 
 
 <div style="text-align: center;" >

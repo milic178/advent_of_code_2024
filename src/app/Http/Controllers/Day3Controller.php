@@ -8,10 +8,6 @@ class Day3Controller extends Controller
 {
     public function solve(){
 
-        //test example string
-        $testExampleString = <<<'EOD'
-xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
-EOD;
         $searchableString = <<<'EOD'
 ?% mul(948,148)why() %how(670,744)mul(590,32);where())#}from()>how()mul(611,372)}{~^?>from()^mul(835,665)who()]#^don't()select()select())mul(724,851)[>&mul(188,482)$mul(781,111)[who()<why(),!]mul(678,13)why()$#%who()mul(620,771)<!^}@^+what()mul(281,719)(]'what()where()>&from():!mul(147,678)how(){mul(938,510)where()!$?*['mul(103,563)where())mul(4,125)$*>>^mul(126,929)]& %~mul(161,418)who()>>do()]-''?mul(416,366)~?/where()]who()mul(459,47))>what(){@[(mul(219,400)+do()when()from():who()when()]&{{%mul(804,830)-select()what()*what()%}mul(861,992)who()!',mul(159,874)#<)''<mul(460,777)?mul(909,244)how()+what()]<do()?}mul(749,87)from()(who();why()mul(430,124)/$>how()@$%mul(214,139)&how()>mul(112,835)select()*from()@why()?[{mul(209,568)/; ~)mul(630,749):mul(841,589)/;who()>[mul(778,567)+when() how()<#mul(544,851)what(){+mul(327,103)from()what()/[~-mul(995,415)/when()-mul(880,153)}:}mul(368,920)'how()mul(864,419)from()what()@mul(208,291)who()<?}?what()',[{mul(575,454)*&(<{how()[mul(557,489){{why(){how()@who()~mul(423,703)mul(910,916)+what()^/<-*from()'mul(746,826),-*)/+>}^from()mul(154,571)++:>,mul(601,458)why()<;how()~from(172,16)mul(333,315)?[mul(513,260) {*mul(117,759)%]mul(77,644){($%>]&~mul(238,306)~select()from();-'who()'mul(460,352); ?select()>[[(from() mul(337,294)why()how()</$<where()don't()(?]{why()%}from()mul(367,653)~mul(910,873)^why()>mul(499,785)>what()[*:#where()*what()mul(765,210)*$[]mul(461,957)##)+}when()-@:mul(198,90)what()what()how()') )mul(258,966)]+(when()mul(535,417)where()!don't()@mul(939,319)?mul(751,538))! mul(758,675)~how()[how(),@>[where()when(29,965)mul(358,39){^what();/(where()how()mul(271,786)why():mul(792,761)do()$]%mul(740,232)>who(949,378)what()[(where()who(){who()#mul(595,343)%+mul(194,296)'mul(161,747): '{where(12,567),@mul(234,39)!+do()/who()[where()&'what()when()how())mul(138,925)),#;where()>{mul(738,864){mul(605,662)*when()%when()+( /~&mul(633,935)when()];mul(263/}*<!where(),- ~when()mul(512,798)]}where())when()who()mul(933,447)where()}mul(33,935*mul(15,975)mul(574,550)+#^;'$from(280,157)$^what()mul(919,849)@mul(18,160))$&^]how()what() when()where()mul(88,657):/from())+:/when()@]mul(71,74)from()'*:@{>mul(127,821)^how()$$select()select()@^{:mul(867,979)&%/>{%^how()what(499,657)+do()%what()(~;-:*mul(438,941)<]?]mul(208,834when()&^;]from()when(613,710)^}+$mul(809,573)mul^)*:from(379,983)mul(47,786)}when()-what()how(450,632)> where()how()mul(810,597 ;;{%(select()select()&,mul(356,249)from()/!{#&^mul(23,248)(!who()]-+,mul(873,987)]{what()<  )-{^mul(591,317)/mul(382,188)mul(476,338)*why()$]mul(865,625)who()})?select():*@[)don't()/ ,mul(737,418)select(318,357);+ what()<mul(41,445)mul(236,630)$}from()]$^$,(do()-select()mul(369,197)from()]#};^mul(561,752)+&#+}?}:mul(18,235)<'& ,(*mul(645,811)why()select()who()[>where()don't()%#>!>/@what()[mul(490,823)&^( ,'@ [do()@mul(855,491)*^why()[,mul(348,679)how()$who() '&how(16,459)/!;mul(43,422)#^from()![}select()mul(976,749)-}select()-where()select()mul(223,589)%[why()mul(868,881)mul(178,790)$,{who()from()#,mul(318,399):where()?[mul(182,864)where() mul(156,690) -]mul(857,353)#'%,},>?+@mul(914,528)where()$mul(785,748)<$who()[mul(453,859)%'@ mul(84,729)/{do()(?$<}mul(820,286)?:*?}#when()(%mul(245,958when()?from(),+mul(128,335)mul(463,102);:]@-~-%mul(914,398)
 +mul(720,985)how(340,568)^!what()[),[mul(734,270)~')?who()]]mul(964,739)from()?who()$when() /mul(566,142)}*,?how()~mul(733,766)when()mul(319,914)when()mul(808,141)*@:&who();mul(736,736)where(){&!$when()]^mul(612,574)how()mul~]what()!!'[:mul(805,568),<^+~ #)&who()mul(810,729),[~/^<&mul(706,233)!-'{why(),(?&mul(28,746)%mul(127,170)-?} #don't()from(),[@,mul(282,734)mul(332,651)[:~mul(771,888)#who()^select(110,751)>who(){mul(655,334)why()+~&}mul(129,762)mul(597,498))*~-}who()who()~'$mul(235,859)where()^-,,@mul(661,707)[ ~,<-mul(502,445)?why(){why()from()-how()*>&mul(237,280)how()mul(669,512)#$< mul(426,417)[what()why()~select()*%,'where()mul(213,617)##>mul(148-how()&]mul(437,581)who()'<from()>%[:how()mul(985,24);mul(446,704)who(),mul(549#}%>[mul(58,502)%mul(55,502)~<where()''who()}<mul(678,579)mul(457,825)+how()from()'(*#+$$mul(266,507)mul(925,485)^why()mul(605,592)[}<>^<mul(173,922)@:<where()/-]'mul(110,899%select()why()why()>[%%;mul(63,642)>how())<*{mul(155,625)]mul(238,47)where()&@mul(630,112)who() mul(570,946)mul(299,320){({mul(307,251)%[]$%mul(621,739)^!}{^-+what())mul(350,650)!>who()what()]^,*mul(154,394)&?^mul(410,870)[-select()why()<who():+%don't()where()$]/when() how()when()mul(708from()]&?mul(589,972)*mul(167,814)[mul(807?%don't()])?'(who()mul(614,926)mul(404,930)'?+;mul(252how()^who(529,21)'who()%mul(675,37)mul(362*what(640,926)select()'?what(){'>mul(744,141)why():))from()^select()what()mul(991,854){-]+mul(64,859))~>>%>%select()#-mul(282,835)'select()'%<$!from(299,765)don't()-'mul(352,659),mul(366,409),when()mul(672,590)#@#}/(##  mul(550,937)$#/^~mul(458,447)mul#(,/<mul(538,275)}where()'?'!-)mul<^>(how(),mul(465,230)^select()$<from(595,221):mul(704,141)what()]when()^select()^)^%'mul(260,350)>how()what()#@};(from()~mul(716,318)from()+]<!?mul(625,41)#[,~ /mul(19}mul(760,4)@how()mul(508,977)@select())][[mul(261,452 $mul(11,905)how(731,838)[mul(823,988)?!?@&&'mul(929,818)(>mul(701,784)!;>do()'&)when()select()mul(945,704)mul(250,874)who()]@don't()why(51,895)-,how()*+{why()%/mul(964,293)&<^where()<select();&mul(900,32)]where()$from()&#from()who()({mul(755,539)mul(26,466)how()$when()%&$~)mul(926,673)$what()!select(),do()~select()#^mul(272,306)~%'mul(22,647)$mul(904,943)^>-from()mul(635,212)when()how()[mul(314,335)%(-  + ~mul(635,915)~[[do(){where(307,78)(who()(why()where();mul(450from()mul(903,662)>$mul(924,200),why()select()$mul(418,533)where()[where()mul(266,643):~^/#(:[from()mul(81,715),who()@:~+who()'%mul(79?who()select();# mul(436,105)#*why() #~[,where()'mulwho()[(~)[mul(119,92)]where(),select()why()?mul(639,691):+<why()why()mul(815,366)*where()-what()/?>mul(188,19)who()(select()what()mul(916,808));~mul(630,228)-)where()[~mul(586/[how()+~!>}>[how()mul(106,235)do()>why(416,339):mul(788,357)[when(442,691)what()how()where()$from()who()mul(471,832)]/*mul(837,328)<)>!mul(389,633)'from(),mul(70when()!from()select()$](when()*%mul(903,43)where(62,223)^from();@()mul(852,198)-when()?mulhow(168,455)(select()how();from()/mul(918,330)what()'how(215,263)$:{~how()*mul(136,552)from(363,441)-when()how()what()-+mul(229,899)!where()when()from(){mul(47,875)~mul(500,586)/&&where(),where()mul(571,252))%}^~when()mul(979,493)do()@!+~>^mul(568,461)]where()$who(){from();mul(743,403)@?[mul(117,954))/mul(382,589)<:what() mul(578,730)#/<,when()#)select()}mul(889,462){how(562,136)select()when()^>mul(150,815)/$from()?what()mul(842,604)**?'-^>;~'mul(622,493)
@@ -21,8 +17,20 @@ $)mul(257,544)+where()how()-[how()^+ mul(986,808){[<why()%!;mul(940,137)who()-+(
 who()where()don't()]mul(891,277)~mul(160,638)('don't()/@/%{mul(462,975)!^:+mul(317,407){who()/from()/mul(424,628) when()select()mul(415,352)!?[where(){?how()/mul(661^, -mul(141,973)(/where()!#who()(what()#$mul(916,889)when()$ )mul(945,846)why()+#where()@how()mul(147,694)%select()mul(414,149)< when(){)what()&[how()mul(903,731)~#mul(389,694)mul(72,447)mul(490,881)?++from()>+ ^(mul(703,722)mul(622,578)from() }@^)+mul(642,732)>from()where()@>${who()mul(526,211$why()[why()mul(349,908)who(635,389)from()what()*$*>@mul(180,150)//: ^mul(622,131);[-^~-mul(32,430)mul(306,173)~where()how() (mul(292,552)<mul(422,363)^<<!#when(304,583)who()mul(348,963)': #select(875,567)#>'where()!do() why()~] who()@^mul(20,119)?[$+/$^mul(242,536)who()'-&'from()mul(351,640){,]~mul(152,587)@select(140,751)<+mul(387,212)[where()%when())how()& >mul(916,539)~]?[when()>!when()??mul(322,151)!]!]~!;mul(27,537); ##;^}}mul(538,277)why()mul(205,526)mul(412,826)^@?where()'mul(957from(193,394)from(863,680)!@how()mul(771,563)( who()mul(377,655) ]select();who()mul(360,272)-select()$what(){mul(291,618)})from()^when(),how()where()don't()why()+&mul(462,803)^$,mul(788,584)@ %?:![:mul(439,528)mul(129,761)]!~mul(321,102)mul(41,728){&what()how()mul(93,933))[ where()^*@+mul(553,965select() '&{-mul(712,817)/<why()[:>/&mul(482,328)when()'mul(957,978)-}{[>{@what()who()mul(48,186)?]how()$what()&,)mul(33,872)#mul(125,207):;mul(143,386)how(),select()don't()}#when()%]&^@?^mul(107,59)&%?don't()mul(183,332):{}/[(#%-+mul(766,627)from()who() what()-+$^mul(41,791)who()] ;-#select()~mul(939,288)[:(</{$how()%select()mul(624,973) ]%mul(780,706)why(677,630);don't()+mul(3,844)$)$$where(),!why()[:mul(506,60)( <>@what()who()?mul(210,210)?select()why()select()where()-how()^mul(755,497)+?^(mul(860,478)^}+$from()(mul(565,649)}mul(184,450) ;/+%[why()mul(752,488)$how()mul(349,56)#'%,+mul(571,637)(mul(186,674)?how() </~@:%mul(295,276)'~where()-&%!mul(72,565);mul(140,645)%#-#*mul(258,568)!/select()why():&}from()from()don't()mul(458,777)#>,'^#!mul(577,819)mul(767,490)how()@when(359,565)mul(97,67)when()?where()>,'(-mul(267,998)%where()why()where():mul(593,317)<mul(514,327)how()~$[{mul(942,232)how()(who() 'from())mul(752,235)?/!'/*#mul(291,995){who()%!,%mul(873,542)%mul(543,144)from())'select()mul(317,658)+mul(819,545)<&what()who()$#who()how()$*mul(849,792)<;-mul(401,327)select()^}?mul(184,612))(where()what()[where()where()@}'mul(532,791)how()how()from()$*~:mul(963,569)when()%- :}why()^~$mul(520,245))^):{do()!mul(900,510)$ %who(615,822)mul(374,872)''/ mul(808,426)select()mul(268,752)&why(),</%!:!/don't()who(){when()*(where()mul(403,172)^mul(185,447)}mul(233,330)why()/&&%who()#/^mul(705,506)?%from();mul(494,15)['}]-}mul(45,474)who()@who()@why()don't()mul(174,355)?what(),@*$+#&mul(9,768);:^mul(381,691)when()&$/]?what(564,603)^how()mul(468,953)[@when()}mul(702,659) where()?where(){**mul(535,116)~where()$('}^~from()mul(926,18)&who()$when()where()>from(),mul(541,30)/why()${[from()who()  mul(732,465)[<!{mul(794,385)mul(676,776)who()]/mul(45,904)<~+who()@-!)&where()mul(49,63))mul(710,576)+mul(279,872)&<{what()-how(),&how()~
 EOD;
 
+        list($sumMatches, $countMatches) = $this->findSumMatches($searchableString);
+        $sumMatches2 = $this->findSumMatches2($searchableString);
 
-        // Regular expression to match valid mul instructions
+        return view('day3.day3', compact('searchableString','countMatches', 'sumMatches', 'sumMatches2'));
+    }
+
+    //part one of day3 task
+    protected function findSumMatches($searchableString)
+    {
+        //test example string
+        $testExampleString = <<<'EOD'
+xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
+EOD;
+        // Regular expression to match valid mul instructions, captures the matched digits into a capture group
         $pattern = '/mul\((\d{1,3}),(\d{1,3})\)/';
 
         //PREG_SET_ORDER ensures each match is stored as an array with the full match and captured groups.
@@ -33,14 +41,43 @@ EOD;
 
         $sumMatches = 0;
         foreach ($matches as $match) {
-            // First number in the pair
-            $firstNumber = $match[1];
-            // Second number in the pair
-            $secondNumber = $match[2];
-            $sumMatches += $firstNumber * $secondNumber;
+            $sumMatches += $match[1] * $match[2];
         }
-         error_log("sumResult is:". print_r($sumMatches,1));
+        error_log("sumResult is:". print_r($sumMatches,1));
 
-        return view('day3.day3', compact('searchableString','countMatches', 'sumMatches'));
+        return [$sumMatches, count($matches)];
+    }
+
+    //part two of day3 task
+    protected function findSumMatches2($searchableString)
+    {
+        $testExampleString = <<<'EOD'
+xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5)"
+EOD;
+
+        $isEnabled = true; // Multiplications start enabled
+        $sum = 0; // To hold the sum of enabled multiplications
+
+        // Regex to match valid instructions
+        $pattern = '/(do\(\)|don\'t\(\)|mul\((\d+),(\d+)\))/';
+
+        preg_match_all($pattern, $searchableString, $matches, PREG_SET_ORDER);
+
+        //matches contain grouped matches of do, dont and mul
+        foreach ($matches as $match) {
+            // The full instruction
+            $instruction = $match[1];
+            if ($instruction === 'do()') {
+                $isEnabled = true;
+            } elseif ($instruction === "don't()") {
+                $isEnabled = false;
+            } elseif (strpos($instruction, 'mul') === 0 && $isEnabled) {
+                // Process mul(x, y) if enabled
+                $x = (int)$match[2];
+                $y = (int)$match[3];
+                $sum += $x * $y;
+            }
+        }
+        return $sum;
     }
 }
