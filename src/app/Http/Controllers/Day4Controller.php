@@ -9,6 +9,7 @@ class Day4Controller extends Controller
     //
 
     public function solve(){
+        //test grid
         $grid = [
             ['M', 'M', 'M', 'S', 'X', 'X', 'M', 'A', 'S', 'M'],
             ['M', 'S', 'A', 'M', 'X', 'M', 'S', 'M', 'S', 'A'],
@@ -43,8 +44,59 @@ class Day4Controller extends Controller
         ];
 
         $word = "XMAS";
+        $countMatchesPartOne = $this->countMatchesPartOne($grid, $directions, $word);
+        $countMatchesPartTwo = $this->countMatchesPartTwo($grid);
+
+
+        error_log("Part One total occurrences of '$word': $countMatchesPartOne\n");
+        error_log("Part Two total occurrences of '$word': $countMatchesPartTwo\n");
+
+        return view('day4.day4', compact('word','countMatchesPartOne','countMatchesPartTwo', 'grid'));
+    }
+
+    protected function countMatchesPartTwo($grid){
         $countMatches = 0;
 
+        $rows = count($grid);
+        $cols = count($grid[0]);
+
+        // Traverse the grid
+        for ($x = 1; $x < $rows - 1; $x++) { // Avoid edges to stay within diagonal bounds
+            for ($y = 1; $y < $cols - 1; $y++) {
+                // Check if the center is 'A'
+                if ($grid[$x][$y] === 'A') {
+                    // Check diagonals for the "X-MAS" pattern
+                    if ($this->isValidXMAS($grid, $x, $y)) {
+                        $countMatches++;
+                    }
+                }
+            }
+        }
+
+        return $countMatches;
+    }
+
+    function isValidXMAS(array $grid, int $x, int $y): bool {
+        // Extract diagonal values
+        $topLeft = $grid[$x - 1][$y - 1];
+        $bottomRight = $grid[$x + 1][$y + 1];
+        $topRight = $grid[$x - 1][$y + 1];
+        $bottomLeft = $grid[$x + 1][$y - 1];
+
+        // Check the diagonals
+        $leftDiagonal = $topLeft . 'A' . $bottomRight;
+        $rightDiagonal = $topRight . 'A' . $bottomLeft;
+
+        // Validate "MAS" or "SAM"
+        return (
+            ($leftDiagonal === 'MAS' || $leftDiagonal === 'SAM') &&
+            ($rightDiagonal === 'MAS' || $rightDiagonal === 'SAM')
+        );
+    }
+
+    protected function countMatchesPartOne($grid, $directions, $word) :int
+    {
+        $countMatches = 0;
         for ($x = 0; $x < count($grid); $x++) {
             for ($y = 0; $y < count($grid[0]); $y++) {
                 foreach ($directions as $direction) {
@@ -54,12 +106,8 @@ class Day4Controller extends Controller
                 }
             }
         }
-
-        error_log("Total occurrences of '$word': $countMatches\n");
-
-        return view('day4.day4', compact('word','countMatches', 'grid'));
+        return $countMatches;
     }
-
     protected function findWord($grid, $x, $y, $direction, $word) {
         $rows = count($grid);
         $cols = count($grid[0]);

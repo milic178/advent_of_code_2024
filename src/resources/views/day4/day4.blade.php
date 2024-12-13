@@ -18,7 +18,8 @@
     </style>
 </head>
 <body>
-<h2 style="text-align: center;">Solution day 4 part one, 'XMAS' matches found: {{$countMatches}}</h2>
+<h2 style="text-align: center;">Solution day 4 part one, 'XMAS' matches found: {{$countMatchesPartOne}}</h2>
+<h2 style="text-align: center;">Solution day 4 part two, 'XMAS' matches found: {{$countMatchesPartTwo}}</h2>
 
 
 <div style="text-align: center;" >
